@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <div class="bg-dark text-white p-3" id="sidebar">
+            <h3>Admin Panel</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link text-white" href="#">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">Products</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">Orders</a></li>
+            </ul>
+        </div>
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
