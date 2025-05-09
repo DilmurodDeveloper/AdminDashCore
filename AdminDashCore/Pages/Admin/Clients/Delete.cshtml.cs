@@ -5,16 +5,17 @@ using AdminDashCore.Models;
 
 namespace AdminDashCore.Pages.Admin.Clients;
 
-public class DetailsModel : PageModel
+public class DeleteModel : PageModel
 {
     private readonly AppDbContext _context;
 
-    public DetailsModel(AppDbContext context)
+    public DeleteModel(AppDbContext context)
     {
         _context = context;
     }
 
-    public Client? Client { get; set; } = new();
+    [BindProperty]
+    public Client? Client { get; set; }  
 
     public async Task<IActionResult> OnGetAsync(int id)
     {
@@ -22,5 +23,16 @@ public class DetailsModel : PageModel
         if (Client == null) return NotFound();
 
         return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync(int id)
+    {
+        var client = await _context.Clients.FindAsync(id);
+        if (client == null) return NotFound();
+
+        _context.Clients.Remove(client);
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage("./Index");
     }
 }

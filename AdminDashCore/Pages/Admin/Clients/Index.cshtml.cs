@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using AdminDashCore.Data;
 using AdminDashCore.Models;
+using AdminDashCore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdminDashCore.Pages.Admin.Clients;
 
@@ -14,7 +14,7 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public List<Client> Clients { get; set; } = new();
+    public IList<Client> Clients { get; set; } = [];
 
     public async Task OnGetAsync()
     {

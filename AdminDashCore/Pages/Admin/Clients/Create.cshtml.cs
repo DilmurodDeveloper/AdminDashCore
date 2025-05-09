@@ -17,20 +17,14 @@ public class CreateModel : PageModel
     [BindProperty]
     public Client Client { get; set; } = new();
 
-    public void OnGet()
-    {
-    }
+    public IActionResult OnGet() => Page();
 
     public async Task<IActionResult> OnPostAsync()
     {
-        if (!ModelState.IsValid)
-        {
-            return Page();
-        }
+        if (!ModelState.IsValid) return Page();
 
         _context.Clients.Add(Client);
         await _context.SaveChangesAsync();
-
         return RedirectToPage("Index");
     }
 }

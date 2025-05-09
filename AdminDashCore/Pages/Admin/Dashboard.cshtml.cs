@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using AdminDashCore.Data;
 using AdminDashCore.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AdminDashCore.Pages.Admin
 {
@@ -21,17 +22,24 @@ namespace AdminDashCore.Pages.Admin
 
         public List<Client>? LatestClients { get; set; }
 
-        public async Task OnGetAsync()
+        public IActionResult OnGet()
         {
-            ProductCount = await _context.Products.CountAsync();
-            OrderCount = await _context.Orders.CountAsync();
-            ClientCount = await _context.Clients.CountAsync();
-            MessageCount = await _context.Messages.CountAsync();
+            if (HttpContext.Session.GetString("IsLoggedIn") != "true")
+            {
+                return RedirectToPage("/Login");
+            }
 
-            LatestClients = await _context.Clients
+            ProductCount = _context.Products.Count();
+            OrderCount = _context.Orders.Count();
+            ClientCount = _context.Clients.Count();
+            MessageCount = _context.Messages.Count();
+
+            LatestClients = _context.Clients
                 .OrderByDescending(c => c.StartDate)
                 .Take(5)
-                .ToListAsync();
+                .ToList();
+
+            return Page();
         }
     }
 }

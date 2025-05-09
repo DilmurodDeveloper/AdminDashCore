@@ -1,23 +1,24 @@
 ﻿@page
 @model AdminDashCore.Pages.Admin.Clients.IndexModel
 @{
+    ViewData["Title"] = "Clients";
     Layout = "_AdminLayout";
 }
 
-<h2>Clients List</h2>
+<h2>Clients</h2>
 
 <p>
-    <a asp-page="Create" class="btn btn-primary">+ New client</a>
+    <a class="btn btn-primary" asp-page="Create">➕ Create New</a>
 </p>
 
-<table class="table table-bordered">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Position</th>
             <th>Office</th>
             <th>Age</th>
-            <th>Start date</th>
+            <th>Start Date</th>
             <th>Salary</th>
             <th></th>
         </tr>
@@ -33,9 +34,9 @@
                 <td>@item.StartDate.ToShortDateString()</td>
                 <td>@item.Salary.ToString("C")</td>
                 <td>
-                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">✏️</a>
-                    <a asp-page="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">👁</a>
-                    <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">🗑</a>
+                    <a class="btn btn-info btn-sm" asp-page="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-warning btn-sm" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
