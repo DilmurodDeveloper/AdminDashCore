@@ -2,24 +2,61 @@
 @model AdminDashCore.Pages.Admin.DashboardModel
 @{
     Layout = "_AdminLayout";
+    ViewData["Title"] = "Dashboard";
 }
 
 <div class="container mt-4">
     <h2>Dashboard</h2>
-    <div class="row">
-        <div class="col-lg-3 col-md-6">
+
+    <div class="row mb-4">
+        <!-- Clients -->
+        <div class="col-lg-3 col-md-6 mb-3">
             <div class="card bg-primary text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Mijozlar</h5>
-                    <p class="card-text">500+ yangi mijoz</p>
+                    <h5 class="card-title">Clients</h5>
+                    <p class="card-text">@Model.ClientCount ta mijoz</p>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/Admin/Clients/Index" class="text-white text-decoration-none">Batafsil →</a>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6">
+
+        <!-- Orders -->
+        <div class="col-lg-3 col-md-6 mb-3">
             <div class="card bg-success text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Buyurtmalar</h5>
-                    <p class="card-text">1200+ tasdiqlangan buyurtma</p>
+                    <h5 class="card-title">Orders</h5>
+                    <p class="card-text">@Model.OrderCount ta buyurtma</p>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/Admin/Orders/Index" class="text-white text-decoration-none">Batafsil →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Products</h5>
+                    <p class="card-text">@Model.ProductCount ta mahsulot</p>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/Admin/Products/Index" class="text-white text-decoration-none">Batafsil →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Messages</h5>
+                    <p class="card-text">@Model.MessageCount ta xabar</p>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/Admin/Messages/Index" class="text-white text-decoration-none">Batafsil →</a>
                 </div>
             </div>
         </div>

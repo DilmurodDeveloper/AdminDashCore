@@ -1,0 +1,29 @@
+﻿@page "{id:int}"
+@model AdminDashCore.Pages.Admin.Clients.DetailsModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Client Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-2">Ism</dt>
+    <dd class="col-sm-10">@Model.Client.Name</dd>
+
+    <dt class="col-sm-2">Lavozim</dt>
+    <dd class="col-sm-10">@Model.Client.Position</dd>
+
+    <dt class="col-sm-2">Ofis</dt>
+    <dd class="col-sm-10">@Model.Client.Office</dd>
+
+    <dt class="col-sm-2">Yoshi</dt>
+    <dd class="col-sm-10">@Model.Client.Age</dd>
+
+    <dt class="col-sm-2">Ish boshlagan sana</dt>
+    <dd class="col-sm-10">@Model.Client.StartDate.ToShortDateString()</dd>
+
+    <dt class="col-sm-2">Maosh</dt>
+    <dd class="col-sm-10">@Model.Client.Salary.ToString("C")</dd>
+</dl>
+
+<a asp-page="Index" class="btn btn-secondary">Back</a>

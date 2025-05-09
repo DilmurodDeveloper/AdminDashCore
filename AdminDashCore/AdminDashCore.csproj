@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Admin\Categories\" />
-    <Folder Include="Pages\Admin\Clients\" />
     <Folder Include="Pages\Admin\Messages\" />
     <Folder Include="Pages\Admin\Orders\" />
     <Folder Include="Pages\Admin\Products\" />

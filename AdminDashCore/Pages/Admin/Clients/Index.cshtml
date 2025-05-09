@@ -1,0 +1,43 @@
+﻿@page
+@model AdminDashCore.Pages.Admin.Clients.IndexModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Clients List</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">+ New client</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Clients)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Position</td>
+                <td>@item.Office</td>
+                <td>@item.Age</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.Salary.ToString("C")</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">✏️</a>
+                    <a asp-page="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">👁</a>
+                    <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">🗑</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

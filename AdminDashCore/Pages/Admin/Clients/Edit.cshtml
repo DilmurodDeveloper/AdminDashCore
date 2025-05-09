@@ -1,0 +1,13 @@
+﻿@page "{id:int}"
+@model AdminDashCore.Pages.Admin.Clients.EditModel
+@{
+    Layout = "_AdminLayout";
+}
+<h2>Edit Client</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Client.Id" />
+    <partial name="_ClientForm" model="Model.Client" />
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>

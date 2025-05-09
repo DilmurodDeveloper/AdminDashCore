@@ -1,0 +1,47 @@
+﻿@page
+@model AdminDashCore.Pages.Admin.Clients.CreateModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Add new client</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Client.Name" class="form-label"></label>
+        <input asp-for="Client.Name" class="form-control" />
+        <span asp-validation-for="Client.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Client.Position" class="form-label"></label>
+        <input asp-for="Client.Position" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Client.Office" class="form-label"></label>
+        <input asp-for="Client.Office" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Client.Age" class="form-label"></label>
+        <input asp-for="Client.Age" class="form-control" type="number" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Client.StartDate" class="form-label"></label>
+        <input asp-for="Client.StartDate" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Client.Salary" class="form-label"></label>
+        <input asp-for="Client.Salary" class="form-control" type="number" step="0.01" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Saqlash</button>
+    <a asp-page="Index" class="btn btn-secondary">Bekor qilish</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
