@@ -1,0 +1,43 @@
+﻿@page "{id:int}"
+@model DetailsModel
+@{
+    ViewData["Title"] = "Product Details";
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-0">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">📄 Product Details</h4>
+                </div>
+                <div class="card-body">
+
+                    <dl class="row">
+                        <dt class="col-sm-4">📦 Name</dt>
+                        <dd class="col-sm-8">@Model.Product?.Name</dd>
+
+                        <dt class="col-sm-4">📝 Description</dt>
+                        <dd class="col-sm-8">@Model.Product?.Description</dd>
+
+                        <dt class="col-sm-4">💵 Price</dt>
+                        <dd class="col-sm-8">@Model.Product?.Price.ToString("C")</dd>
+
+                        <dt class="col-sm-4">🔢 Quantity</dt>
+                        <dd class="col-sm-8">@Model.Product?.Quantity</dd>
+
+                        <dt class="col-sm-4">📂 Category</dt>
+                        <dd class="col-sm-8">@Model.Product?.Category?.Name</dd>
+                    </dl>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-page="Index" class="btn btn-outline-secondary">⬅️ Back</a>
+                        <a asp-page="Edit" asp-route-id="@Model.Product?.Id" class="btn btn-outline-warning">✏️ Edit</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

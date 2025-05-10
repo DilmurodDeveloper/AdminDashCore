@@ -7,58 +7,69 @@
 
 <h2 class="mb-4">Dashboard</h2>
 
+<!-- Stats Cards -->
 <div class="row mb-4">
     <div class="col-md-3">
-        <div class="card text-white bg-primary">
-            <div class="card-body">Primary Card</div>
-            <div class="card-footer text-end">
-                <a class="text-white" href="#">View Details →</a>
+        <div class="card text-white bg-primary shadow">
+            <div class="card-body fs-5">📦 Products</div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <span class="fw-bold fs-4">@Model.ProductCount</span>
+                <a class="text-white text-decoration-none" href="/Admin/Products">View →</a>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card text-white bg-warning">
-            <div class="card-body">Warning Card</div>
-            <div class="card-footer text-end">
-                <a class="text-dark" href="#">View Details →</a>
+        <div class="card text-white bg-warning shadow">
+            <div class="card-body fs-5">🛒 Orders</div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <span class="fw-bold fs-4">@Model.OrderCount</span>
+                <a class="text-white text-decoration-none" href="/Admin/Orders">View →</a>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card text-white bg-success">
-            <div class="card-body">Success Card</div>
-            <div class="card-footer text-end">
-                <a class="text-white" href="#">View Details →</a>
+        <div class="card text-white bg-success shadow">
+            <div class="card-body fs-5">👥 Clients</div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <span class="fw-bold fs-4">@Model.ClientCount</span>
+                <a class="text-white text-decoration-none" href="/Admin/Clients">View →</a>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card text-white bg-danger">
-            <div class="card-body">Danger Card</div>
-            <div class="card-footer text-end">
-                <a class="text-white" href="#">View Details →</a>
+        <div class="card text-white bg-danger shadow">
+            <div class="card-body fs-5">✉️ Messages</div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <span class="fw-bold fs-4">@Model.MessageCount</span>
+                <a class="text-white text-decoration-none" href="/Admin/Messages">View →</a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">Clients</div>
+<!-- Latest Clients Table -->
+<div class="card mt-4">
+    <div class="card-header bg-secondary text-white">🕵️‍♂️ Latest Clients</div>
     <div class="card-body">
-        <table id="clientsTable" class="table table-striped table-bordered">
-            <thead>
+        <table class="table table-bordered table-striped" id="clientsTable">
+            <thead class="table-secondary">
                 <tr>
                     <th>Name</th>
                     <th>Position</th>
                     <th>Office</th>
-                    <th>Age</th>
                     <th>Start Date</th>
-                    <th>Salary</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Tiger Nixon</td><td>System Architect</td><td>Edinburgh</td><td>61</td><td>2011/04/25</td><td>$320,800</td></tr>
-                <tr><td>Garrett Winters</td><td>Accountant</td><td>Tokyo</td><td>63</td><td>2011/07/25</td><td>$170,750</td></tr>
+                @foreach (var client in Model.LatestClients)
+                {
+                    <tr>
+                        <td>@client.Name</td>
+                        <td>@client.Position</td>
+                        <td>@client.Office</td>
+                        <td>@client.StartDate.ToShortDateString()</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

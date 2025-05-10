@@ -7,9 +7,9 @@ namespace AdminDashCore.Pages;
 public class LoginModel : PageModel
 {
     [BindProperty]
-    public User User { get; set; }
+    public User? LoginUser { get; set; }
 
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
     public void OnGet()
     {
@@ -23,10 +23,10 @@ public class LoginModel : PageModel
             return Page();
         }
 
-        if (User.Username == "admin" && User.Password == "123456")
+        if (LoginUser?.Username == "admin" && LoginUser.Password == "123456")
         {
             HttpContext.Session.SetString("IsLoggedIn", "true");
-            HttpContext.Session.SetString("Username", User.Username);
+            HttpContext.Session.SetString("Username", LoginUser.Username);
 
             return RedirectToPage("/Admin/Dashboard");
         }

@@ -1,6 +1,8 @@
 ﻿body {
-    font-family: 'Segoe UI', sans-serif;
+    background-color: #f1f3f5;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 #wrapper {
     display: flex;
@@ -74,3 +76,38 @@
 .d-none {
     display: none;
 }
+
+/*login page*/
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+    .login-container:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+h3 {
+    color: #343a40;
+}
+
+label {
+    font-weight: 500;
+    color: #495057;
+}
+
+input.form-control {
+    padding: 10px;
+    font-size: 0.95rem;
+}
+
+button {
+    padding: 10px;
+    font-size: 1rem;
+}
+/*login page*/

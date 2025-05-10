@@ -4,55 +4,40 @@
     Layout = null;
 }
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    body {
-        background-color: #f8f9fa;
-    }
+<link href="~/css/admin.css" rel="stylesheet" />
 
-    .login-container {
-        max-width: 400px;
-        margin: auto;
-        padding: 20px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="login-container shadow p-4 rounded">
+        <form method="post">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold">Admin Login</h3>
+                <p class="text-muted">Please enter your credentials</p>
+            </div>
 
-    h3 {
-        margin-bottom: 20px;
-    }
-</style>
+            <div class="mb-3">
+                <label asp-for="LoginUser.Username" class="form-label">Username</label>
+                <input asp-for="LoginUser.Username" class="form-control" />
+                <span asp-validation-for="LoginUser.Username" class="text-danger small"></span>
+            </div>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <form method="post">
-                <h3 class="text-center mb-4">Login</h3>
+            <div class="mb-3">
+                <label asp-for="LoginUser.Password" class="form-label">Password</label>
+                <input asp-for="LoginUser.Password" type="password" class="form-control" />
+                <span asp-validation-for="LoginUser.Password" class="text-danger small"></span>
+            </div>
 
-                <div class="mb-3">
-                    <label asp-for="User.Username" class="form-label">Username</label>
-                    <input asp-for="User.Username" class="form-control" />
-                    <span asp-validation-for="User.Username" class="text-danger"></span>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger mt-3 mb-0 py-2 px-3 text-center">
+                    @Model.ErrorMessage
                 </div>
-
-                <div class="mb-3">
-                    <label asp-for="User.Password" class="form-label">Password</label>
-                    <input asp-for="User.Password" class="form-control" />
-                    <span asp-validation-for="User.Password" class="text-danger"></span>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-
-                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-                {
-                    <p class="text-danger mt-2">@Model.ErrorMessage</p>
-                }
-            </form>
-        </div>
+            }
+        </form>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-    

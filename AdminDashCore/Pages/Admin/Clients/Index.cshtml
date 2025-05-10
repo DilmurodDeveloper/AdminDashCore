@@ -5,40 +5,45 @@
     Layout = "_AdminLayout";
 }
 
-<h2>Clients</h2>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">👥 Clients</h2>
+        <a class="btn btn-outline-success" asp-page="Create">➕ Create New</a>
+    </div>
 
-<p>
-    <a class="btn btn-primary" asp-page="Create">➕ Create New</a>
-</p>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start Date</th>
-            <th>Salary</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Clients)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Position</td>
-                <td>@item.Office</td>
-                <td>@item.Age</td>
-                <td>@item.StartDate.ToShortDateString()</td>
-                <td>@item.Salary.ToString("C")</td>
-                <td>
-                    <a class="btn btn-info btn-sm" asp-page="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-warning btn-sm" asp-page="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-page="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="card shadow border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover table-striped mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start Date</th>
+                        <th>Salary</th>
+                        <th class="text-center" style="width: 24%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Clients)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Position</td>
+                            <td>@item.Office</td>
+                            <td>@item.Age</td>
+                            <td>@item.StartDate.ToShortDateString()</td>
+                            <td>@item.Salary.ToString("C")</td>
+                            <td class="text-end">
+                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">✏️ Edit</a>
+                                <a asp-page="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">📄 Details</a>
+                                <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">🗑️ Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

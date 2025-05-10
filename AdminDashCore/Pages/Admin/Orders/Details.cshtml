@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model AdminDashCore.Pages.Admin.Orders.DetailsModel
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Order Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-2">Client:</dt>
+    <dd class="col-sm-10">@Model.Order.Client?.Name</dd>
+
+    <dt class="col-sm-2">Order Date:</dt>
+    <dd class="col-sm-10">@Model.Order.OrderDate.ToShortDateString()</dd>
+
+    <dt class="col-sm-2">Total Amount:</dt>
+    <dd class="col-sm-10">@Model.Order.TotalAmount.ToString("C")</dd>
+
+    <dt class="col-sm-2">Status:</dt>
+    <dd class="col-sm-10">@Model.Order.Status</dd>
+</dl>
+
+<a asp-page="Index" class="btn btn-secondary">Back</a>

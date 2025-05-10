@@ -1,0 +1,25 @@
+﻿@page "{id:int}"
+@model AdminDashCore.Pages.Admin.Messages.EditModel
+@{
+    ViewData["Title"] = "Edit Message";
+    Layout = "_AdminLayout";
+}
+
+<h2>Edit Message</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Message.Id" />
+
+    <div class="mb-3">
+        <label asp-for="Message.ClientId" class="form-label">Client</label>
+        <select asp-for="Message.ClientId" class="form-control" asp-items="Model.ClientList"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Message.Content" class="form-label">Content</label>
+        <textarea asp-for="Message.Content" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-warning">Save Changes</button>
+    <a asp-page="Index" class="btn btn-secondary">Back</a>
+</form>

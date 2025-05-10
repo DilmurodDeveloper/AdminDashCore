@@ -1,0 +1,42 @@
+﻿@page "{id:int}"
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete Product";
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-0">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">🗑️ Delete Product</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <strong>Warning!</strong> Are you sure you want to delete this product? This action cannot be undone
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4">📦 Name</dt>
+                        <dd class="col-sm-8">@Model.Product?.Name</dd>
+
+                        <dt class="col-sm-4">📂 Category</dt>
+                        <dd class="col-sm-8">@Model.Product?.Category?.Name</dd>
+
+                        <dt class="col-sm-4">💵 Price</dt>
+                        <dd class="col-sm-8">@Model.Product?.Price.ToString("C")</dd>
+                    </dl>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Product.Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-page="Index" class="btn btn-outline-secondary me-5">❌ Cancel</a>
+                            <button type="submit" class="btn btn-outline-danger">✅ Yes, Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

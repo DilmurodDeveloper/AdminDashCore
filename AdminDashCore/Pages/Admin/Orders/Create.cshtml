@@ -1,0 +1,33 @@
+﻿@page
+@model AdminDashCore.Pages.Admin.Orders.CreateModel
+@{
+    ViewData["Title"] = "Create Order";
+    Layout = "_AdminLayout";
+}
+
+<h2>Create Order</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Order.ClientId" class="form-label">Client</label>
+        <select asp-for="Order.ClientId" class="form-control" asp-items="Model.ClientList"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Order.OrderDate" class="form-label">Order Date</label>
+        <input asp-for="Order.OrderDate" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Order.TotalAmount" class="form-label">Total Amount</label>
+        <input asp-for="Order.TotalAmount" class="form-control" type="number" step="0.01" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Order.Status" class="form-label">Status</label>
+        <input asp-for="Order.Status" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Create Order</button>
+    <a asp-page="Index" class="btn btn-secondary">Back</a>
+</form>

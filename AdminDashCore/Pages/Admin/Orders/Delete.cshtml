@@ -1,0 +1,29 @@
+﻿@page "{id:int}"
+@model AdminDashCore.Pages.Admin.Orders.DeleteModel
+@{
+    ViewData["Title"] = "Delete Order";
+    Layout = "_AdminLayout";
+}
+
+<h2>Delete Order</h2>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete this order?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Order Number</dt>
+    <dd class="col-sm-9">@Model.Order?.Id</dd>
+
+    <dt class="col-sm-3">Customer Name</dt>
+    <dd class="col-sm-9">@Model.Order?.Client?.Name</dd>
+
+    <dt class="col-sm-3">Total Amount</dt>
+    <dd class="col-sm-9">@Model.Order?.TotalAmount.ToString("C")</dd>
+</dl>
+
+<form method="post">
+    <input type="hidden" asp-for="Order.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>

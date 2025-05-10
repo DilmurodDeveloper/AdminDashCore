@@ -1,0 +1,40 @@
+﻿@page
+@model AdminDashCore.Pages.Admin.Orders.IndexModel
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "_AdminLayout";
+}
+
+<h2>Orders</h2>
+
+<a class="btn btn-primary mb-3" asp-page="Create">➕ Create New Order</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Order Number</th>
+            <th>Customer Name</th>
+            <th>Order Date</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.Orders!)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.Client?.Name</td>
+                <td>@order.OrderDate.ToShortDateString()</td>
+                <td>@order.TotalAmount.ToString("C")</td>
+                <td>@order.Status</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-page="Details" asp-route-id="@order.Id">Details</a>
+                    <a class="btn btn-warning btn-sm" asp-page="Edit" asp-route-id="@order.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-page="Delete" asp-route-id="@order.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

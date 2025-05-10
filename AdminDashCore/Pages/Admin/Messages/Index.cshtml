@@ -1,0 +1,38 @@
+﻿@page
+@model AdminDashCore.Pages.Admin.Messages.IndexModel
+@{
+    ViewData["Title"] = "Messages";
+    Layout = "_AdminLayout";
+}
+
+<h2>Messages</h2>
+
+<a class="btn btn-primary mb-3" asp-page="Create">➕ Create New Message</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Client</th>
+            <th>Content</th>
+            <th>Sent At</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model.Messages!)
+        {
+            <tr>
+                <td>@message.Client?.Name</td>
+                <td>@message.Content</td>
+                <td>@message.SentAt.ToShortDateString()</td>
+                <td>@(message.IsRead ? "Read" : "Unread")</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-page="Details" asp-route-id="@message.Id">Details</a>
+                    <a class="btn btn-warning btn-sm" asp-page="Edit" asp-route-id="@message.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-page="Delete" asp-route-id="@message.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

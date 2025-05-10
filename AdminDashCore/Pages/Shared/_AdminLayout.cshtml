@@ -18,7 +18,7 @@
         <!-- Sidebar -->
         <div class="bg-dark border-end" id="sidebar-wrapper" style="width: 220px;">
             <div class="sidebar-heading text-white px-3 py-2">ADMIN PANEL</div>
-            <div class="list-group list-group-flush">
+            <div class="list-group list-group-flush mb-lg-5">
                 <div class="list-group-flush text-capitalize text-secondary">CORE</div>
                 <a class="list-group-item list-group-item-action bg-dark text-white" asp-page="/Admin/Dashboard">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
@@ -49,17 +49,17 @@
         <div id="page-content-wrapper" class="w-100">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom px-3">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                    <button class="btn btn-dark me-2" id="menu-toggle">
+                    <button class="btn btn-dark me-5" id="menu-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <form class="d-flex" style="flex-grow: 1; justify-content: flex-end;">
-                        <input class="form-control me-2" type="search" placeholder="Search for..." />
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+                    @* <form class="d-flex" style="flex-grow: 1; justify-content: flex-end;"> *@
+                    @*     <input class="form-control me-3" type="search" placeholder="Search for..." /> *@
+                    @*     <button class="btn btn-primary me-5" type="submit"> *@
+                    @*         <i class="fas fa-search"></i> *@
+                    @*     </button> *@
+                    @* </form> *@
                     <div class="dropdown">
-                        <button class="btn btn-dark dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-dark dropdown-toggle me-3" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
