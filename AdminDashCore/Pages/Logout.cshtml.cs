@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Http;
 
-namespace AdminDashCore.Pages;
-
-public class LogoutModel : PageModel
+namespace AdminDashCore.Pages
 {
-    public IActionResult OnGet()
+    public class LogoutModel : PageModel
     {
-        HttpContext.Session.Clear();
-        return RedirectToPage("/Login");
+        public IActionResult OnGet()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToPage("/Login");
+        }
     }
 }

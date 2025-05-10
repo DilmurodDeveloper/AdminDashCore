@@ -18,8 +18,16 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseSession();      
+app.UseSession();
 app.UseAuthorization();
+
+app.MapGet("/Logout", context =>
+{
+    context.Session.Clear();
+
+    context.Response.Redirect("/Login");
+    return Task.CompletedTask;
+});
 
 app.MapGet("/", context =>
 {
@@ -27,6 +35,6 @@ app.MapGet("/", context =>
     return Task.CompletedTask;
 });
 
-app.MapRazorPages();      
+app.MapRazorPages();
 
 app.Run();
