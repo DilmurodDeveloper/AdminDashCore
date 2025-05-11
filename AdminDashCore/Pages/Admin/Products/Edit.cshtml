@@ -5,55 +5,53 @@
     Layout = "_AdminLayout";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow border-0">
-                <div class="card-header bg-warning text-black">
-                    <h4 class="mb-0">✏️ Edit Product</h4>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container">
+    <div class="card shadow border-0">
+        <div class="card-header bg-warning text-black">
+            <h4 class="mb-0">✏️ Edit Product</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="Product.Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Product.Name" class="form-label"></label>
+                    <input asp-for="Product.Name" class="form-control" placeholder="Enter product name" />
+                    <span asp-validation-for="Product.Name" class="text-danger"></span>
                 </div>
-                <div class="card-body">
-                    <form method="post">
-                        <input type="hidden" asp-for="Product.Id" />
 
-                        <div class="mb-3">
-                            <label asp-for="Product.Name" class="form-label"></label>
-                            <input asp-for="Product.Name" class="form-control" placeholder="Enter product name" />
-                            <span asp-validation-for="Product.Name" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="Product.Description" class="form-label"></label>
-                            <textarea asp-for="Product.Description" class="form-control" rows="3" placeholder="Enter product description"></textarea>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="Product.Price" class="form-label"></label>
-                                <input asp-for="Product.Price" class="form-control" placeholder="0.00" />
-                                <span asp-validation-for="Product.Price" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="Product.Quantity" class="form-label"></label>
-                                <input asp-for="Product.Quantity" class="form-control" placeholder="0" />
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <label asp-for="Product.CategoryId" class="form-label">Category</label>
-                            <select asp-for="Product.CategoryId" class="form-select" asp-items="Model.CategoryList">
-                                <option disabled selected>-- Select Category --</option>
-                            </select>
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <a asp-page="Index" class="btn btn-outline-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-outline-warning">💾 Save</button>
-                        </div>
-                    </form>
+                <div class="mb-3">
+                    <label asp-for="Product.Description" class="form-label"></label>
+                    <textarea asp-for="Product.Description" class="form-control" rows="3" placeholder="Enter product description"></textarea>
                 </div>
-            </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Product.Price" class="form-label"></label>
+                        <input asp-for="Product.Price" class="form-control" placeholder="0.00" />
+                        <span asp-validation-for="Product.Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Product.Quantity" class="form-label"></label>
+                        <input asp-for="Product.Quantity" class="form-control" placeholder="0" />
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Product.CategoryId" class="form-label">Category</label>
+                    <select asp-for="Product.CategoryId" class="form-select" asp-items="Model.CategoryList">
+                        <option disabled selected>-- Select Category --</option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-page="Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle me-1"></i> Cancel</a>
+                    <button type="submit" class="btn btn-warning">💾 Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

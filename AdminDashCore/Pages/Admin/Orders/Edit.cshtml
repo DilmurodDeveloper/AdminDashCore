@@ -5,31 +5,56 @@
     Layout = "_AdminLayout";
 }
 
-<h2>Edit Order</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-<form method="post">
-    <input type="hidden" asp-for="Order.Id" />
+<div class="container mt-5">
+    <div class="card shadow border-0">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">✏️ Edit Order</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" novalidate>
+                <input type="hidden" asp-for="Order.Id" />
 
-    <div class="mb-3">
-        <label asp-for="Order.ClientId" class="form-label">Client</label>
-        <select asp-for="Order.ClientId" class="form-control" asp-items="Model.ClientList"></select>
+                <div class="mb-3">
+                    <label asp-for="Order.ClientId" class="form-label">Client</label>
+                    <select asp-for="Order.ClientId" class="form-select" asp-items="Model.ClientList">
+                        <option value="">-- Select Client --</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Order.OrderDate" class="form-label">Order Date</label>
+                    <input asp-for="Order.OrderDate" class="form-control" type="date" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Order.TotalAmount" class="form-label">Total Amount</label>
+                    <input asp-for="Order.TotalAmount" class="form-control" type="number" step="0.01" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Order.Status" class="form-label">Status</label>
+                    <select asp-for="Order.Status" class="form-select">
+                        <option value="">-- Select Status --</option>
+                        <option value="Pending" selected="@("Pending" == Model.Order?.Status)">Pending</option>
+                        <option value="Completed" selected="@("Completed" == Model.Order?.Status)">Completed</option>
+                        <option value="Canceled" selected="@("Canceled" == Model.Order?.Status)">Canceled</option>
+                    </select>
+                    <span asp-validation-for="Order.Status" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-page="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Cancel
+                    </a>
+                    <button type="submit" class="btn btn-warning">💾 Save changes</button>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 
-    <div class="mb-3">
-        <label asp-for="Order.OrderDate" class="form-label">Order Date</label>
-        <input asp-for="Order.OrderDate" class="form-control" type="date" />
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Order.TotalAmount" class="form-label">Total Amount</label>
-        <input asp-for="Order.TotalAmount" class="form-control" type="number" step="0.01" />
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Order.Status" class="form-label">Status</label>
-        <input asp-for="Order.Status" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-warning">Save Changes</button>
-    <a asp-page="Index" class="btn btn-secondary">Back</a>
-</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
