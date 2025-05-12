@@ -1,9 +1,12 @@
-using AdminDashCore.Data;
 using AdminDashCore.Models;
+using AdminDashCore.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AdminDashCore.Pages.Admin.Messages
 {
@@ -18,32 +21,50 @@ namespace AdminDashCore.Pages.Admin.Messages
 
         [BindProperty]
         public Message? Message { get; set; }
-        public SelectList? ClientList { get; set; }
 
-        public IActionResult OnGet(int id)
+        public List<SelectListItem>? ClientList { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Message = _context.Messages.Include(m => m.Client).FirstOrDefault(m => m.Id == id);
+            ClientList = await _context.Clients
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name 
+                })
+                .ToListAsync();
+
+            Message = await _context.Messages
+                .Include(m => m.Client)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (Message == null)
             {
                 return NotFound();
             }
 
-            ClientList = new SelectList(_context.Clients, "Id", "Name", Message.ClientId);
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                ClientList = new SelectList(_context.Clients, "Id", "Name", Message?.ClientId);
+                ClientList = await _context.Clients
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.Id.ToString(),
+                        Text = c.Name
+                    })
+                    .ToListAsync();
+
                 return Page();
             }
 
-            _context.Messages.Update(Message!);
-            _context.SaveChanges();
-            return RedirectToPage("Index");
+            _context.Attach(Message!).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
         }
     }
 }

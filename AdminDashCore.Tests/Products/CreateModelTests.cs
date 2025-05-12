@@ -3,11 +3,6 @@ using AdminDashCore.Data;
 using AdminDashCore.Pages.Admin.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Moq;
-using Xunit;
-using System;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminDashCore.Tests.Products

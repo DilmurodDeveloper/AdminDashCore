@@ -4,8 +4,6 @@ using AdminDashCore.Pages.Admin.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace AdminDashCore.Tests.Categories
 {

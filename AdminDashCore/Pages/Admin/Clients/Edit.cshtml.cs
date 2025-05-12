@@ -34,7 +34,7 @@ public class EditModel : PageModel
     {
         if (!ModelState.IsValid) return Page();
 
-        _context.Attach(Client).State = EntityState.Modified;
+        _context.Attach(Client!).State = EntityState.Modified;
 
         try
         {
@@ -42,7 +42,7 @@ public class EditModel : PageModel
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!_context.Clients.Any(e => e.Id == Client.Id))
+            if (!_context.Clients.Any(e => e.Id == Client!.Id))
                 return NotFound();
             else
                 throw;

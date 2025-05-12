@@ -2,10 +2,8 @@
 using AdminDashCore.Models;
 using AdminDashCore.Pages.Admin.Orders;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Xunit;
 
 namespace AdminDashCore.Tests.Orders
 {
