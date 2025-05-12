@@ -7,26 +7,26 @@
 <link href="~/css/admin.css" rel="stylesheet" />
 
 <div class="container d-flex align-items-center justify-content-center min-vh-100">
-    <div class="login-container shadow p-4 rounded">
+    <div class="login-container shadow-lg p-5 rounded border border-light">
         <form method="post">
             <div class="text-center mb-4">
-                <h3 class="fw-bold">Admin Login</h3>
-                <p class="text-muted">Please enter your credentials</p>
+                <h3 class="fw-bold text-primary">Admin Login</h3>
+                <p class="text-muted">Please enter your credentials to access the dashboard</p>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-4">
                 <label asp-for="LoginUser.Username" class="form-label">Username</label>
-                <input asp-for="LoginUser.Username" class="form-control" />
+                <input asp-for="LoginUser.Username" class="form-control" placeholder="Enter your username" />
                 <span asp-validation-for="LoginUser.Username" class="text-danger small"></span>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-4">
                 <label asp-for="LoginUser.Password" class="form-label">Password</label>
-                <input asp-for="LoginUser.Password" type="password" class="form-control" />
+                <input asp-for="LoginUser.Password" type="password" class="form-control" placeholder="Enter your password" />
                 <span asp-validation-for="LoginUser.Password" class="text-danger small"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
 
             @if (!string.IsNullOrEmpty(Model.ErrorMessage))
             {

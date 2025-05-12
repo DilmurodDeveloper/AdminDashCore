@@ -61,7 +61,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var client in Model.LatestClients)
+                @foreach (var client in Model.LatestClients!)
                 {
                     <tr>
                         <td>@client.Name</td>

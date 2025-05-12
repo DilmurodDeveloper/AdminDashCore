@@ -5,21 +5,38 @@
     Layout = "_AdminLayout";
 }
 
-<h2>Edit Message</h2>
+<div class="container mt-4">
+    <div class="card shadow border-0">
+        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">✏️ Edit Message</h4>
+            <a asp-page="Index" class="btn btn-sm btn-dark">🔙 Back to List</a>
+        </div>
 
-<form method="post">
-    <input type="hidden" asp-for="Message.Id" />
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="Message.Id" />
 
-    <div class="mb-3">
-        <label asp-for="Message.ClientId" class="form-label">Client</label>
-        <select asp-for="Message.ClientId" class="form-control" asp-items="Model.ClientList"></select>
+                <div class="mb-3">
+                    <label asp-for="Message.ClientId" class="form-label">👤 Client</label>
+                    <select asp-for="Message.ClientId" class="form-select" asp-items="Model.ClientList">
+                        <option value="">-- Select Client --</option>
+                    </select>
+                    <span asp-validation-for="Message.ClientId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Message.Content" class="form-label">📝 Content</label>
+                    <textarea asp-for="Message.Content" class="form-control" rows="5" placeholder="Update your message..."></textarea>
+                    <span asp-validation-for="Message.Content" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-warning me-2">
+                        💾 Save Changes
+                    </button>
+                    <a asp-page="Index" class="btn btn-secondary">↩️ Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="Message.Content" class="form-label">Content</label>
-        <textarea asp-for="Message.Content" class="form-control"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-warning">Save Changes</button>
-    <a asp-page="Index" class="btn btn-secondary">Back</a>
-</form>
+</div>

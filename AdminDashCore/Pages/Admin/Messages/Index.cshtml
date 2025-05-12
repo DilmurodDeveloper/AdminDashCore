@@ -5,34 +5,73 @@
     Layout = "_AdminLayout";
 }
 
-<h2>Messages</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-<a class="btn btn-primary mb-3" asp-page="Create">➕ Create New Message</a>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">✉️ Messages</h2>
+        <a class="btn btn-primary" asp-page="Create">
+            <i class="bi bi-envelope-plus-fill text-white me-1"></i> Create New Message
+        </a>
+    </div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Client</th>
-            <th>Content</th>
-            <th>Sent At</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var message in Model.Messages!)
-        {
-            <tr>
-                <td>@message.Client?.Name</td>
-                <td>@message.Content</td>
-                <td>@message.SentAt.ToShortDateString()</td>
-                <td>@(message.IsRead ? "Read" : "Unread")</td>
-                <td>
-                    <a class="btn btn-info btn-sm" asp-page="Details" asp-route-id="@message.Id">Details</a>
-                    <a class="btn btn-warning btn-sm" asp-page="Edit" asp-route-id="@message.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-page="Delete" asp-route-id="@message.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="card shadow border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover table-striped mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width: 5%;">#</th>
+                        <th>👤 Client</th>
+                        <th>📝 Content</th>
+                        <th>📅 Sent At</th>
+                        <th>📬 Status</th>
+                        <th class="text-center" style="width: 25%;">⚙️ Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Messages != null && Model.Messages.Any())
+                    {
+                        var index = 1;
+                        foreach (var message in Model.Messages!)
+                        {
+                            <tr>
+                                <td>@index</td>
+                                <td>@message.Client?.Name</td>
+                                <td>@message.Content</td>
+                                <td>@message.SentAt.ToShortDateString()</td>
+                                <td>
+                                    @if (message.IsRead)
+                                    {
+                                        <span class="badge bg-success">Read</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Unread</span>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <a class="btn btn-sm btn-warning" asp-page="Edit" asp-route-id="@message.Id">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </a>
+                                    <a class="btn btn-sm btn-info" asp-page="Details" asp-route-id="@message.Id">
+                                        <i class="bi bi-info-circle-fill"></i> Details
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" asp-page="Delete" asp-route-id="@message.Id">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">No messages found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
