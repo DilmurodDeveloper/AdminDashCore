@@ -4,28 +4,31 @@ using Microsoft.AspNetCore.Mvc;
 using AdminDashCore.Data;
 using Microsoft.EntityFrameworkCore;
 
-public class DetailsModel : PageModel
+namespace AdminDashCore.Pages.Admin.Products
 {
-    private readonly AppDbContext _context;
-
-    public DetailsModel(AppDbContext context)
+    public class DetailsModel : PageModel
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
-    public Product? Product { get; set; }
-
-    public IActionResult OnGet(int id)
-    {
-        Product = _context.Products
-            .Include(p => p.Category)
-            .FirstOrDefault(p => p.Id == id);
-
-        if (Product == null)
+        public DetailsModel(AppDbContext context)
         {
-            return NotFound();
+            _context = context;
         }
 
-        return Page();
+        public Product? Product { get; set; }
+
+        public IActionResult OnGet(int id)
+        {
+            Product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(p => p.Id == id);
+
+            if (Product == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
+        }
     }
 }

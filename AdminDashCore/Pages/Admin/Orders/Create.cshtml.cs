@@ -3,6 +3,7 @@ using AdminDashCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
 
 namespace AdminDashCore.Pages.Admin.Orders
 {
@@ -17,6 +18,7 @@ namespace AdminDashCore.Pages.Admin.Orders
 
         [BindProperty]
         public Order? Order { get; set; }
+
         public SelectList? ClientList { get; set; }
 
         public void OnGet()
@@ -24,16 +26,16 @@ namespace AdminDashCore.Pages.Admin.Orders
             ClientList = new SelectList(_context.Clients, "Id", "Name");
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 ClientList = new SelectList(_context.Clients, "Id", "Name");
-                return Page();
+                return Page(); 
             }
 
             _context.Orders.Add(Order!);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToPage("Index");
         }
     }

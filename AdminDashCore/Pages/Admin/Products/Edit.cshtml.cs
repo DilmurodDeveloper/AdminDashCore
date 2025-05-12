@@ -5,42 +5,45 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AdminDashCore.Data;
 
-public class EditModel : PageModel
+namespace AdminDashCore.Pages.Admin.Products
 {
-    private readonly AppDbContext _context;
-
-    public EditModel(AppDbContext context)
+    public class EditModel : PageModel
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
-    [BindProperty]
-    public Product? Product { get; set; }
-
-    public SelectList? CategoryList { get; set; }
-
-    public IActionResult OnGet(int id)
-    {
-        Product = _context.Products.Find(id);
-        if (Product == null)
+        public EditModel(AppDbContext context)
         {
-            return NotFound();
+            _context = context;
         }
 
-        CategoryList = new SelectList(_context.Categories, "Id", "Name");
-        return Page();
-    }
+        [BindProperty]
+        public Product? Product { get; set; }
 
-    public IActionResult OnPost()
-    {
-        if (!ModelState.IsValid)
+        public SelectList? CategoryList { get; set; }
+
+        public IActionResult OnGet(int id)
         {
+            Product = _context.Products.Find(id);
+            if (Product == null)
+            {
+                return NotFound();
+            }
+
             CategoryList = new SelectList(_context.Categories, "Id", "Name");
             return Page();
         }
 
-        _context.Attach(Product!).State = EntityState.Modified;
-        _context.SaveChanges();
-        return RedirectToPage("Index");
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                CategoryList = new SelectList(_context.Categories, "Id", "Name");
+                return Page();
+            }
+
+            _context.Attach(Product!).State = EntityState.Modified;
+            _context.SaveChanges();
+            return RedirectToPage("Index");
+        }
     }
 }

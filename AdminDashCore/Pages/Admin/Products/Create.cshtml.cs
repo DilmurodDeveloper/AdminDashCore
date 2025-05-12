@@ -4,35 +4,38 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using AdminDashCore.Data;
 
-public class CreateModel : PageModel
+namespace AdminDashCore.Pages.Admin.Products
 {
-    private readonly AppDbContext _context;
-
-    public CreateModel(AppDbContext context)
+    public class CreateModel : PageModel
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
-    [BindProperty]
-    public Product Product { get; set; } = new();
-
-    public SelectList? CategoryList { get; set; }
-
-    public void OnGet()
-    {
-        CategoryList = new SelectList(_context.Categories, "Id", "Name");
-    }
-
-    public IActionResult OnPost()
-    {
-        if (!ModelState.IsValid)
+        public CreateModel(AppDbContext context)
         {
-            CategoryList = new SelectList(_context.Categories, "Id", "Name");
-            return Page();
+            _context = context;
         }
 
-        _context.Products.Add(Product);
-        _context.SaveChanges();
-        return RedirectToPage("Index");
+        [BindProperty]
+        public Product Product { get; set; } = new();
+
+        public SelectList? CategoryList { get; set; }
+
+        public void OnGet()
+        {
+            CategoryList = new SelectList(_context.Categories, "Id", "Name");
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                CategoryList = new SelectList(_context.Categories, "Id", "Name");
+                return Page();
+            }
+
+            _context.Products.Add(Product);
+            await _context.SaveChangesAsync(); 
+            return RedirectToPage("Index");
+        }
     }
 }

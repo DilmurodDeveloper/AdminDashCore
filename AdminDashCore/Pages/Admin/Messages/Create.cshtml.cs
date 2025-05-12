@@ -24,7 +24,7 @@ namespace AdminDashCore.Pages.Admin.Messages
             ClientList = new SelectList(_context.Clients, "Id", "Name");
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync() 
         {
             if (!ModelState.IsValid)
             {
@@ -33,8 +33,9 @@ namespace AdminDashCore.Pages.Admin.Messages
             }
 
             _context.Messages.Add(Message!);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync(); 
             return RedirectToPage("Index");
         }
+
     }
 }
